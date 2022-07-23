@@ -19,9 +19,12 @@ def read_file(file):
   for line in file:
     values = []
     for value in line.split():
+      try:
       values.append(float(value))
+      except:
+        values.append(0.0)
+    if len(values) > 1:
     input.append(values)
-
   return head, input
 
 # function to create the x-axis labels with timestamps at midnight
