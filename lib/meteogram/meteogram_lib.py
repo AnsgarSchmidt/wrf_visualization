@@ -8,7 +8,7 @@ import numpy, sys, os
 import Ngl
 import math
 import datetime
-import temperature_lib, rain_lib, pressure_lib, wind_lib, humidity_lib
+import temperature_lib, rain_lib, pressure_lib, wind_lib, humidity_lib, cloud_lib
 
 # function to read the content of the given *.TS meteogram file
 def read_file(file):
@@ -20,11 +20,11 @@ def read_file(file):
     values = []
     for value in line.split():
       try:
-      values.append(float(value))
+        values.append(float(value))
       except:
         values.append(0.0)
     if len(values) > 1:
-    input.append(values)
+      input.append(values)
   return head, input
 
 # function to create the x-axis labels with timestamps at midnight
@@ -122,6 +122,7 @@ def create_meteogram_for(filepath, filename, timestamp):
   taus       = cdf[:, 1]
   u          = cdf[:, 7]
   v          = cdf[:, 8]
+  cloud_idx  = cdf[:, 42] 
   rain_sum   = numpy.add(rain_cum, rain_expl)
 
   # set up a color map and open an output workstation.
@@ -152,10 +153,14 @@ def create_meteogram_for(filepath, filename, timestamp):
   wind_direction = wind_lib.calculate_winddirection(u, v, len(taus))
 
   # generate measurand resources
+  # cloud resource
+  cloud_res = cloud_lib.get_cloud_resource(count_xdata)
+  cloud_res.tiMainString = format_title(head[0], timestamp)
+  cloud_res = config_xaxis_legend(cloud_res, main_hours, sec_hours, labels)
+
   # pressure resource
   sealevel_pressure = pressure_lib.reduce_pressure_to_sealevel(pressure, cdf[:, 5], float(head[13]))
   pres_res = pressure_lib.get_pressure_resource(count_xdata, sealevel_pressure)
-  pres_res.tiMainString = format_title(head[0] ,timestamp)
   pres_res = config_xaxis_legend(pres_res, main_hours, sec_hours, labels)
   
   # relative humidity
@@ -183,6 +188,7 @@ def create_meteogram_for(filepath, filename, timestamp):
   tempsfc_res = config_xaxis_legend(tempsfc_res, main_hours, sec_hours, labels)
 
   # generate plot results
+  cloudmsz  = Ngl.xy(wks,taus,cloud_idx,cloud_res)
   pressmsz  = Ngl.xy(wks,taus,sealevel_pressure,pres_res)
   relhummsz = Ngl.xy(wks,taus,rel_hum,relhum_res)
   windmsz   = Ngl.xy(wks,taus,wind_speed,wind_res)
@@ -192,6 +198,7 @@ def create_meteogram_for(filepath, filename, timestamp):
   tempsfc_res.xyLineColor     =  "blue"        # line color for dew point
   dewpmsz   = Ngl.xy(wks,taus,dew_point,tempsfc_res)
 
+  Ngl.draw(cloudmsz)
   Ngl.draw(pressmsz)
   Ngl.draw(relhummsz)
   Ngl.overlay(rainsum, rainhist)
