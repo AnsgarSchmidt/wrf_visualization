@@ -6,9 +6,9 @@ import numpy
 def get_cloud_resource(count_xdata):
   cloud_res = Ngl.Resources()
   cloud_res.vpXF            = 0.15   # The left side of the box
-  cloud_res.vpYF            = 1.05   # The top side of the plot box
+  cloud_res.vpYF            = 0.20   # The top side of the plot box
   cloud_res.vpWidthF        = 0.75   # The Width of the plot box
-  cloud_res.vpHeightF       = 0.10   # The height of the plot box
+  cloud_res.vpHeightF       = 0.05   # The height of the plot box
   
   cloud_res.tiXAxisString      = ""             # X axes label.
   cloud_res.tiYAxisFontHeightF = 0.015          # Y axes font height.
@@ -34,9 +34,6 @@ def get_cloud_resource(count_xdata):
   cloud_res.nglMaximize     = False     # Do not maximize plot in frame
   
   return cloud_res
-
-
-
 
 
 # id, ts_hour, id_tsloc, ix, iy, t, q, u, v, psfc, glw, gsw, hfx, lh, tsk, tslb(1), rainc, rainnc, clw

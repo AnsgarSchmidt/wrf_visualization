@@ -6,9 +6,9 @@ import numpy
 def get_relhumidity_resource(count_xdata):
   relhum_res = Ngl.Resources()
   relhum_res.vpXF            = 0.15   # The left side of the box
-  relhum_res.vpYF            = 0.75   # The top side of the plot box
+  relhum_res.vpYF            = 0.60   # The top side of the plot box
   relhum_res.vpWidthF        = 0.75   # The Width of the plot box
-  relhum_res.vpHeightF       = 0.10   # The height of the plot box
+  relhum_res.vpHeightF       = 0.05   # The height of the plot box
   
   relhum_res.tiXAxisString      = ""             # X axes label.
   relhum_res.tiYAxisFontHeightF = 0.015          # Y axes font height.

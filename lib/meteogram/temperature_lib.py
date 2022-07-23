@@ -22,9 +22,9 @@ def get_temperature_resource(count_xdata, tempht, dew_point):
 
   tempsfc_res = Ngl.Resources()
   tempsfc_res.vpXF            = 0.15   # The left side of the box
-  tempsfc_res.vpYF            = 0.15   # The top side of the plot box
+  tempsfc_res.vpYF            = 0.10   # The top side of the plot box
   tempsfc_res.vpWidthF        = 0.75   # The Width of the plot box
-  tempsfc_res.vpHeightF       = 0.10   # The height of the plot box
+  tempsfc_res.vpHeightF       = 0.05   # The height of the plot box
 
   tempsfc_res.tiXAxisString      = ""             # X axes label.
   tempsfc_res.tiYAxisFontHeightF = 0.015          # Y axes font height.

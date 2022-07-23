@@ -122,7 +122,7 @@ def create_meteogram_for(filepath, filename, timestamp):
   taus       = cdf[:, 1]
   u          = cdf[:, 7]
   v          = cdf[:, 8]
-  cloud_idx  = cdf[:, 42] 
+  cloud_idx  = cdf[:, 42]
   rain_sum   = numpy.add(rain_cum, rain_expl)
 
   # set up a color map and open an output workstation.
@@ -155,12 +155,14 @@ def create_meteogram_for(filepath, filename, timestamp):
   # generate measurand resources
   # cloud resource
   cloud_res = cloud_lib.get_cloud_resource(count_xdata)
-  cloud_res.tiMainString = format_title(head[0], timestamp)
   cloud_res = config_xaxis_legend(cloud_res, main_hours, sec_hours, labels)
+  cloud_idx[cloud_idx < 0] = 0
+  cloud_idx = cloud_idx * 100
 
   # pressure resource
   sealevel_pressure = pressure_lib.reduce_pressure_to_sealevel(pressure, cdf[:, 5], float(head[13]))
   pres_res = pressure_lib.get_pressure_resource(count_xdata, sealevel_pressure)
+  pres_res.tiMainString = format_title(head[0], timestamp)
   pres_res = config_xaxis_legend(pres_res, main_hours, sec_hours, labels)
   
   # relative humidity

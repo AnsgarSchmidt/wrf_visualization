@@ -12,9 +12,9 @@ def get_windspeed_resource(count_xdata, wind_speed):
 
   wind_res = Ngl.Resources()
   wind_res.vpXF            = 0.15       # The left side of the box location
-  wind_res.vpYF            = 0.45       # The top side of the plot box loc
+  wind_res.vpYF            = 0.40       # The top side of the plot box loc
   wind_res.vpWidthF        = 0.75       # The Width of the plot box
-  wind_res.vpHeightF       = 0.10       # The height of the plot box
+  wind_res.vpHeightF       = 0.05       # The height of the plot box
   wind_res.trXMaxF         = count_xdata  # max value on x-axis
   wind_res.trYMaxF         = math.ceil(upper_boundary)   # max value on y-axis
   wind_res.trYMinF         = 0.0                     # min value on y-axis
@@ -40,9 +40,9 @@ def get_windspeed_resource(count_xdata, wind_speed):
 def get_winddirection_resource(count_xdata, wind_direction):
   direction_res = Ngl.Resources()
   direction_res.vpXF            = 0.15       # The left side of the box location
-  direction_res.vpYF            = 0.6        # The top side of the plot box loc
+  direction_res.vpYF            = 0.50        # The top side of the plot box loc
   direction_res.vpWidthF        = 0.75       # The Width of the plot box
-  direction_res.vpHeightF       = 0.10       # The height of the plot box
+  direction_res.vpHeightF       = 0.05       # The height of the plot box
   direction_res.trXMaxF         = count_xdata  # max value on x-axis
   direction_res.trYMaxF         = 360.0   # max value on y-axis
   direction_res.trYMinF         = 0.0                     # min value on y-axis

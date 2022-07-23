@@ -8,7 +8,7 @@ def get_rainsum_resource(count_xdata):
   rainsum_res.vpXF            = 0.15   # The left side of the box
   rainsum_res.vpYF            = 0.3   # The top side of the plot box
   rainsum_res.vpWidthF        = 0.75   # The Width of the plot box
-  rainsum_res.vpHeightF       = 0.10   # The height of the plot box
+  rainsum_res.vpHeightF       = 0.05   # The height of the plot box
   rainsum_res.trYAxisType     = "IrregularAxis"
   rainsum_res.xyYIrregularPoints = [ 0, 1, 2, 3, 4, 8, 16, 35 ]
   rainsum_res.trYAxisType     = 0.0    # min value on y-axis
